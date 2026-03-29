@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorting Visualizer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@300;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-title">Sorting<span> </span>Visualizer</div>
+  <div class="nav-controls">
+    <div class="control-group">
+      <span class="control-label">Speed</span>
+      <input type="range" id="speed" min="1" max="5" value="3">
+    </div>
+    <div class="control-group">
+      <span class="control-label">Array Size</span>
+      <input type="range" id="size" min="5" max="80" value="30">
+    </div>
+    <div class="control-group">
+      <span class="control-label">Custom Array</span>
+      <input type="text" id="custom-input" placeholder="e.g. 5,3,8,1,2">
+    </div>
+    <button class="btn" id="set-array-btn">Set Array</button>
+    <button class="btn primary" id="generate-btn">↺ New Array</button>
+  </div>
+</nav>
+
+<div class="algo-strip">
+  <button class="algo-btn active" data-algo="bubble">Bubble</button>
+  <button class="algo-btn" data-algo="selection">Selection</button>
+  <button class="algo-btn" data-algo="insertion">Insertion</button>
+  <button class="algo-btn" data-algo="merge">Merge</button>
+  <button class="algo-btn" data-algo="quick">Quick</button>
+</div>
+
+<main>
+  <!-- LEFT PANEL: Time Complexity -->
+  <div class="info-panel" id="left-panel">
+    <h3>Time Complexity</h3>
+    <div class="complexity-item">
+      <span class="complexity-label">Worst Case</span>
+      <span class="complexity-value" id="time-worst">—</span>
+    </div>
+    <div class="complexity-item">
+      <span class="complexity-label">Average Case</span>
+      <span class="complexity-value" id="time-avg">—</span>
+    </div>
+    <div class="complexity-item">
+      <span class="complexity-label">Best Case</span>
+      <span class="complexity-value" id="time-best">—</span>
+    </div>
+
+    <div class="legend">
+      <div class="complexity-item" style="margin-bottom:8px">
+        <span class="complexity-label" style="border-bottom:1px solid #1e1e2e; padding-bottom:6px;">Legend</span>
+      </div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-default)"></div> Default</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-compare)"></div> Comparing</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-move)"></div> Moving</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-sorted)"></div> Sorted</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--bar-pivot)"></div> Pivot</div>
+    </div>
+  </div>
+
+  <!-- VISUALIZER -->
+  <div id="visualizer">
+    <div id="array-container"></div>
+
+    <div id="status-bar">
+      <span id="status-text">Select an algorithm and press <span>Sort</span></span>
+      <span id="comparisons-count"></span>
+    </div>
+
+    <div id="playback">
+      <button class="btn" id="reset-btn">Reset</button>
+      <button class="play-btn" id="sort-btn" title="Sort">▶</button>
+      <button class="btn" id="stop-btn" disabled>Stop</button>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: Space Complexity -->
+  <div class="info-panel right">
+    <h3>Space Complexity</h3>
+    <div class="complexity-item">
+      <span class="complexity-label">Worst Case</span>
+      <span class="complexity-value" id="space-worst">—</span>
+    </div>
+    <div class="complexity-item">
+      <span class="complexity-label">Algorithm</span>
+      <span class="complexity-value" id="algo-name" style="color:var(--text);font-size:0.85rem;line-height:1.4">—</span>
+    </div>
+    <div class="complexity-item" style="margin-top:1rem">
+      <span class="complexity-label">Stable?</span>
+      <span class="complexity-value" id="algo-stable">—</span>
+    </div>
+    <div class="complexity-item">
+      <span class="complexity-label">In-Place?</span>
+      <span class="complexity-value" id="algo-inplace">—</span>
+    </div>
+  </div>
+</main>
+
+<script src="sorting.js"></script>
+</body>
+</html>
